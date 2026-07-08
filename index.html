@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>Highway Rush</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="game" width="480" height="800"></canvas>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div class="hud-row top">
+        <div class="hud-chip"><span class="lbl">NÍVEL</span><span id="hud-level">1</span></div>
+        <div class="hud-chip"><span class="lbl">PONTOS</span><span id="hud-score">0</span></div>
+        <div class="hud-chip"><span class="lbl">🪙</span><span id="hud-coins">0</span></div>
+        <div class="hud-chip"><span class="lbl">⚡</span><span id="hud-speed">0</span> km/h</div>
+      </div>
+      <div class="hud-row top2">
+        <div class="lives" id="hud-lives">❤️❤️❤️</div>
+        <div class="combo" id="hud-combo">x1</div>
+        <div class="nitro-wrap"><div class="nitro-bar"><div id="hud-nitro"></div></div></div>
+        <button id="btn-pause" class="icon-btn">⏸</button>
+      </div>
+      <div class="progress-wrap"><div id="hud-progress"></div></div>
+    </div>
+
+    <!-- Mobile controls -->
+    <div id="touch-controls" class="hidden">
+      <button class="touch left" data-act="left">◀</button>
+      <button class="touch right" data-act="right">▶</button>
+      <button class="touch nitro" data-act="nitro">⚡</button>
+    </div>
+
+    <!-- Screens -->
+    <div id="screen-menu" class="screen">
+      <h1 class="logo">HIGHWAY <span>RUSH</span></h1>
+      <p class="tag">Sobreviva. Colete. Domine a rodovia.</p>
+      <div class="menu-buttons">
+        <button class="btn primary" data-nav="play">JOGAR</button>
+        <button class="btn" data-nav="cars">SELECIONAR CARRO</button>
+        <button class="btn" data-nav="shop">LOJA</button>
+        <button class="btn" data-nav="settings">CONFIGURAÇÕES</button>
+        <button class="btn" data-nav="ranking">RANKING</button>
+        <button class="btn ghost" data-nav="credits">CRÉDITOS</button>
+      </div>
+      <div class="footer-hud">
+        <span>🪙 <b id="menu-coins">0</b></span>
+        <span>🏆 <b id="menu-best">0</b></span>
+      </div>
+    </div>
+
+    <div id="screen-cars" class="screen hidden">
+      <h2>SELECIONE SEU CARRO</h2>
+      <div class="cars-grid" id="cars-grid"></div>
+      <button class="btn ghost" data-nav="menu">◀ Voltar</button>
+    </div>
+
+    <div id="screen-shop" class="screen hidden">
+      <h2>LOJA DE UPGRADES</h2>
+      <div class="shop-list" id="shop-list"></div>
+      <div class="footer-hud"><span>🪙 <b id="shop-coins">0</b></span></div>
+      <button class="btn ghost" data-nav="menu">◀ Voltar</button>
+    </div>
+
+    <div id="screen-settings" class="screen hidden">
+      <h2>CONFIGURAÇÕES</h2>
+      <div class="settings-list">
+        <label>Volume Música <input type="range" id="set-music" min="0" max="1" step="0.05" /></label>
+        <label>Volume Efeitos <input type="range" id="set-sfx" min="0" max="1" step="0.05" /></label>
+        <label>Qualidade
+          <select id="set-quality"><option value="high">Alta</option><option value="med">Média</option><option value="low">Baixa</option></select>
+        </label>
+        <button class="btn" id="btn-fullscreen">Tela Cheia</button>
+        <button class="btn danger" id="btn-reset">Zerar progresso</button>
+      </div>
+      <button class="btn ghost" data-nav="menu">◀ Voltar</button>
+    </div>
+
+    <div id="screen-ranking" class="screen hidden">
+      <h2>RANKING LOCAL</h2>
+      <ol id="ranking-list"></ol>
+      <button class="btn ghost" data-nav="menu">◀ Voltar</button>
+    </div>
+
+    <div id="screen-credits" class="screen hidden">
+      <h2>CRÉDITOS</h2>
+      <p>Highway Rush</p>
+      <p>HTML5 · CSS3 · JavaScript</p>
+      <p>Feito com ❤️</p>
+      <button class="btn ghost" data-nav="menu">◀ Voltar</button>
+    </div>
+
+    <div id="screen-pause" class="screen overlay hidden">
+      <h2>PAUSADO</h2>
+      <button class="btn primary" id="btn-resume">Continuar</button>
+      <button class="btn" data-nav="menu">Menu Principal</button>
+    </div>
+
+    <div id="screen-levelup" class="screen overlay hidden">
+      <div class="levelup-card">
+        <h2>NÍVEL CONCLUÍDO</h2>
+        <div class="stars">★★★</div>
+        <p>Pontos: <b id="lvl-score">0</b></p>
+        <p>Moedas: <b id="lvl-coins">0</b></p>
+        <button class="btn primary" id="btn-next-level">PRÓXIMO</button>
+      </div>
+    </div>
+
+    <div id="screen-gameover" class="screen overlay hidden">
+      <div class="gameover-card">
+        <h2>GAME OVER</h2>
+        <p>Pontos: <b id="go-score">0</b></p>
+        <p>Tempo: <b id="go-time">0s</b></p>
+        <p>Moedas: <b id="go-coins">0</b></p>
+        <p>Recorde: <b id="go-best">0</b></p>
+        <button class="btn primary" id="btn-retry">JOGAR NOVAMENTE</button>
+        <button class="btn" data-nav="menu">MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
