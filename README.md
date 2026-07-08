@@ -54,4 +54,4 @@ game/
     └── icons/
 ```
 
-Feito com ❤️ — divirta-se e personalize!
+
